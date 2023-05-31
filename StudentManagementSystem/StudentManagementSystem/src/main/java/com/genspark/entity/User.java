@@ -24,7 +24,7 @@ public class User {
     private String password;
 
     @Column(name="role", length = 255)
-    private String userRole;
+    private String role;
 
     public User() {
     }
@@ -35,7 +35,7 @@ public class User {
         this.userLastName = userLastName;
         this.email = email;
         this.password = password;
-        this.userRole = userRole;
+        this.role = userRole;
     }
 
     public int getUserId() {
@@ -79,11 +79,11 @@ public class User {
     }
 
     public String getUserRole() {
-        return userRole;
+        return role;
     }
 
     public void setUserRole(String userRole) {
-        this.userRole = userRole;
+        this.role = userRole;
     }
 
     @Override
@@ -93,7 +93,7 @@ public class User {
                 ", userFirstName='" + userFirstName + '\'' +
                 ", userLastName='" + userLastName + '\'' +
                 ", email='" + email + '\'' +
-                ", userRole='" + userRole + '\'' +
+                ", userRole='" + role + '\'' +
                 '}';
     }
 }
