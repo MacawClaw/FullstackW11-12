@@ -5,12 +5,15 @@ public class LoginResponse {
     String message;
     Boolean status;
 
+    String role;
+
     public LoginResponse() {
     }
 
-    public LoginResponse(String message, Boolean status) {
+    public LoginResponse(String message, Boolean status, String role) {
         this.message = message;
         this.status = status;
+        this.role = role;
     }
 
     public String getMessage() {
@@ -34,6 +37,7 @@ public class LoginResponse {
         return "LoginResponse{" +
                 "message='" + message + '\'' +
                 ", status=" + status +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
