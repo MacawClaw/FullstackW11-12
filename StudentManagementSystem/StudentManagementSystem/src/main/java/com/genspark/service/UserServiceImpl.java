@@ -37,6 +37,12 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
+    public String enrollCourse()
+    {
+        return null;
+    }
+
+    @Override
     public LoginResponse loginUser(LoginDTO loginDTO) {
         User user1 = userRepo.findByEmail(loginDTO.getEmail());
         if (user1 != null) {
