@@ -1,5 +1,6 @@
 package com.genspark.service;
 
+import com.genspark.Dto.CourseDTO;
 import com.genspark.entity.Course;
 import com.genspark.entity.User;
 import com.genspark.repository.CourseRepo;
@@ -20,9 +21,17 @@ public class CourseServiceIml implements CourseService {
     @Autowired
     private UserRepo userRepo;
     @Override
-    public String addCourse(Course course) {
+    public String addCourse(CourseDTO courseDTO) {
+        Course course = new Course(
+                courseDTO.getCourseId(),
+                courseDTO.getName(),
+                courseDTO.getDescription(),
+                courseDTO.getMaxNumberOfStudents(),
+                new User(courseDTO.getTeacherId())
+        );
+
         courseRepo.save(course);
-        return course.getName();
+        return courseDTO.getName();
     }
 
     @Override
@@ -31,7 +40,15 @@ public class CourseServiceIml implements CourseService {
     }
 
     @Override
-    public Course updateCourse(Course course) {
+    public Course updateCourse(CourseDTO courseDTO) {
+        Course course = new Course(
+                courseDTO.getCourseId(),
+                courseDTO.getName(),
+                courseDTO.getDescription(),
+                courseDTO.getMaxNumberOfStudents(),
+                new User(courseDTO.getTeacherId())
+        );
+
         return courseRepo.save(course);
     }
 

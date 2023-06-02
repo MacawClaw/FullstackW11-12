@@ -1,5 +1,6 @@
 package com.genspark.controller;
 
+import com.genspark.Dto.CourseDTO;
 import com.genspark.Dto.UserDTO;
 import com.genspark.entity.Course;
 import com.genspark.entity.User;
@@ -29,8 +30,8 @@ public class AdminController {
     }
 
     @PostMapping(path="/savecourse")
-    public String saveCourse(@RequestBody Course course) {
-        String id = courseService.addCourse(course);
+    public String saveCourse(@RequestBody CourseDTO courseDTO) {
+        String id = courseService.addCourse(courseDTO);
 
         return "course was saved";
     }
@@ -51,8 +52,8 @@ public class AdminController {
     }
 
     @PutMapping(path="/savecourse")
-    public Course updateCourse(@RequestBody Course course) {
-        return courseService.updateCourse(course);
+    public Course updateCourse(@RequestBody CourseDTO courseDTO) {
+        return courseService.updateCourse(courseDTO);
     }
 
     @DeleteMapping("/deletecourse/{courseId}")
