@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -20,6 +21,12 @@ public class Course {
     private String description;
     @Column(name="max_students")
     private int maxNumberOfStudents;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="teacher_id")
+    private User teacher;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<UserCourse> studentCourses = new ArrayList<>();
 
     @Override
     public String toString() {
@@ -28,6 +35,7 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", maxNumberOfStudents=" + maxNumberOfStudents +
+                ", teacher=" + teacher +
                 '}';
     }
 }
