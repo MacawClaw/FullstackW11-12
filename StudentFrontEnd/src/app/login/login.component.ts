@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Login } from '../services/Login';
+import { LoginInfo } from '../services/LoginInfo';
 import { DataGatewayService } from '../services/data-gateway.service';
 
 @Component({
@@ -21,7 +21,7 @@ export class LoginComponent {
       return;
     }
 
-    const loginData: Login = {
+    const loginData: LoginInfo = {
       email: this.email,
       password: this.password
     };

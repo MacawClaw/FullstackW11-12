@@ -17,7 +17,7 @@ export class RegisterComponent {
 
   constructor(private http: HttpClient, private dataService: DataGatewayService){}
 
-  onSubmit() {
+  save() {
     if (!this.firstname || !this.lastname || !this.email || !this.password) {
       alert('Please enter required information.')
       return;

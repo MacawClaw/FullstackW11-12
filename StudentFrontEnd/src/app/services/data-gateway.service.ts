@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Login } from '../services/Login';
+import { LoginInfo } from './LoginInfo';
 import { AccountRegistration } from './AccountRegistration';
 
 const httpOptions = {
@@ -19,7 +19,7 @@ export class DataGatewayService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  getLoginStatus(loginData: Login): Observable<any> {
+  getLoginStatus(loginData: LoginInfo): Observable<any> {
     console.log(loginData);
 
     return this.http.post(`${this.apiUrl}/api/v1/user/login`, loginData);
