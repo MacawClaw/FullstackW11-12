@@ -1,5 +1,6 @@
 package com.genspark.service;
 
+import com.genspark.Dto.CourseDTO;
 import com.genspark.entity.Course;
 import com.genspark.entity.User;
 
@@ -7,9 +8,9 @@ import java.util.List;
 
 public interface CourseService {
 
-    String addCourse(Course course);
+    String addCourse(CourseDTO courseDTO);
     List<Course> getAllCourses();
-    Course updateCourse(Course course);
+    Course updateCourse(CourseDTO courseDTO);
     String deleteCourse(int courseId);
 
     List<Course> getCoursesByStudentId(int studentId);

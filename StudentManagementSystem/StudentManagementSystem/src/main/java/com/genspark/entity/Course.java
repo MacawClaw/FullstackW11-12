@@ -1,5 +1,6 @@
 package com.genspark.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,12 +22,22 @@ public class Course {
     private String description;
     @Column(name="max_students")
     private int maxNumberOfStudents;
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @ManyToOne
     @JoinColumn(name="teacher_id")
     private User teacher;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<UserCourse> studentCourses = new ArrayList<>();
+
+    public Course(int courseId, String name, String description, int maxNumberOfStudents, User teacher) {
+        this.courseId = courseId;
+        this.name = name;
+        this.description = description;
+        this.maxNumberOfStudents = maxNumberOfStudents;
+        this.teacher = teacher;
+    }
 
     @Override
     public String toString() {

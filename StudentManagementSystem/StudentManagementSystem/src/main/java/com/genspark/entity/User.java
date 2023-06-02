@@ -1,5 +1,6 @@
 package com.genspark.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -36,9 +37,11 @@ public class User {
     private String role;
 
     @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Course> courses = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<UserCourse> studentCourses = new ArrayList<>();
 
     public User(int userId, String userFirstName, String userLastName, String email, String password, String role) {
@@ -50,6 +53,10 @@ public class User {
         this.role = role;
     }
 
+    public User(int userId) {
+        this.userId = userId;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -57,7 +64,7 @@ public class User {
                 ", userFirstName='" + userFirstName + '\'' +
                 ", userLastName='" + userLastName + '\'' +
                 ", email='" + email + '\'' +
-                ", userRole='" + role + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }

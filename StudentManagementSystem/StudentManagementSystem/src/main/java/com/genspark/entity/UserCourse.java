@@ -20,4 +20,12 @@ public class UserCourse {
     @JoinColumn(name = "course_id")
     private Course course;
 
+    @Override
+    public String toString() {
+        return "UserCourse{" +
+                "id=" + id +
+                ", user=" + user +
+                ", course=" + course +
+                '}';
+    }
 }
