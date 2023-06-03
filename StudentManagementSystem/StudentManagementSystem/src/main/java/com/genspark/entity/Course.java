@@ -1,11 +1,13 @@
 package com.genspark.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,6 +23,22 @@ public class Course {
     @Column(name="max_students")
     private int maxNumberOfStudents;
 
+    @ManyToOne
+    @JoinColumn(name="teacher_id")
+    private User teacher;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<UserCourse> studentCourses = new ArrayList<>();
+
+    public Course(int courseId, String name, String description, int maxNumberOfStudents, User teacher) {
+        this.courseId = courseId;
+        this.name = name;
+        this.description = description;
+        this.maxNumberOfStudents = maxNumberOfStudents;
+        this.teacher = teacher;
+    }
+
     @Override
     public String toString() {
         return "Course{" +
@@ -28,6 +46,7 @@ public class Course {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", maxNumberOfStudents=" + maxNumberOfStudents +
+                ", teacher=" + teacher +
                 '}';
     }
 }

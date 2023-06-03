@@ -1,9 +1,13 @@
 package com.genspark.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -32,7 +36,26 @@ public class User {
     @Column(name="role", length = 255)
     private String role;
 
+    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Course> courses = new ArrayList<>();
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<UserCourse> studentCourses = new ArrayList<>();
+
+    public User(int userId, String userFirstName, String userLastName, String email, String password, String role) {
+        this.userId = userId;
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+    }
+
+    public User(int userId) {
+        this.userId = userId;
+    }
 
     @Override
     public String toString() {
@@ -41,7 +64,7 @@ public class User {
                 ", userFirstName='" + userFirstName + '\'' +
                 ", userLastName='" + userLastName + '\'' +
                 ", email='" + email + '\'' +
-                ", userRole='" + role + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
