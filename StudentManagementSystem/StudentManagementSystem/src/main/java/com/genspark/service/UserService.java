@@ -8,5 +8,7 @@ public interface UserService {
 
     String addUser(UserDTO userDTO);
 
+    String enrollCourse();
+
     LoginResponse loginUser(LoginDTO loginDTO);
 }

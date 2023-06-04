@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:'admin-add-course', component: AddCourseComponent},
   {path: 'admin-courses', component: CourseListComponent},
   {path: 'admin-update-course/:id', component: UpdateCourseComponent},
+  {path: 'home', component: HomeComponent}
 ];
 
 @NgModule({

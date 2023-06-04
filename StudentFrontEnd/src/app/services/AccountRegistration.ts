@@ -1,6 +1,6 @@
 export interface AccountRegistration {
-    firstname: string;
-    lastname: string;
+    userFirstName: string;
+    userLastName: string;
     email: string; 
     password: string;
     role: string;
