@@ -27,11 +27,12 @@ export class LoginComponent {
     };
 
     console.log(loginData);
-
-    let resultData: any =
-      this.dataService.getLoginStatus(loginData).subscribe((loginData) => resultData);
-    
-
+    let bodyData = {
+      email: this.email,
+      password: this.password,
+    };
+    this.http.post("http://localhost:8080/api/v1/login/log", bodyData).subscribe((resultData: any) => {
+    console.log(resultData);
     if (resultData.message == "Email does not exist") {
       alert("Email does not exist");
     }
@@ -40,11 +41,29 @@ export class LoginComponent {
     }
     else {
       alert("Incorrect email or password");
-    }  
+    }
+    
+  });
+}
+}
+  //   let resultData: any =
+  //     this.dataService.getLoginStatus(loginData).subscribe((loginData) => resultData);
 
-    this.email='';
-    this.password='';
-  }
+    
+
+  //   if (resultData.message == "Email does not exist") {
+  //     alert("Email does not exist");
+  //   }
+  //   else if (resultData.message == "Login Success") {
+  //     this.router.navigateByUrl('/home');
+  //   }
+  //   else {
+  //     alert("Incorrect email or password" + resultData.message);
+  //   }  
+
+  //   this.email='';
+  //   this.password='';
+  // }
 
   /*
   login(){
@@ -71,4 +90,4 @@ export class LoginComponent {
   }
   */
 
-}
+

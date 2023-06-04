@@ -14,7 +14,7 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
-    @PostMapping
+    @PostMapping(path="/log")
     public ResponseEntity<?> loginUser(@RequestBody LoginDTO loginDTO) {
         LoginResponse loginResponse = userService.loginUser(loginDTO);
         return ResponseEntity.ok(loginResponse);
