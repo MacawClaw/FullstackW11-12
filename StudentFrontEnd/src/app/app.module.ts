@@ -12,6 +12,8 @@ import { AddCourseComponent } from './add-course/add-course.component';
 import { CourseListComponent } from './course-list/course-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UpdateCourseComponent } from './update-course/update-course.component';
+import { UpdateStudentComponent } from './update-student/update-student.component';
+import { StudentListComponent } from './student-list/student-list.component';
 
 
 @NgModule({
@@ -22,7 +24,9 @@ import { UpdateCourseComponent } from './update-course/update-course.component';
     RegisterComponent,
     AddCourseComponent,
     CourseListComponent,
-    UpdateCourseComponent
+    UpdateCourseComponent,
+    UpdateStudentComponent,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,

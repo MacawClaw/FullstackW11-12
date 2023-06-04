@@ -5,3 +5,10 @@ export interface Course {
     maxNumberOfStudents: number;
     teacher: string;
 }
+
+export interface Student {
+    userId:number;
+    userFirstName:string;
+    userLastName:string;
+    email:string;
+}

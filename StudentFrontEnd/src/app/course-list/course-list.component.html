@@ -21,8 +21,7 @@
                 <td>{{course.teacher}}</td>
                 <td>
                     <fa-icon (click)="deleteCourse(course.courseId)" [icon]="iconDelete"></fa-icon>
-                    <button (click)="deleteCourse(course.courseId)">Delete</button>
-                    <button >Edit</button>
+                    
                     <a class="icon-link" routerLink="/admin-update-course/{{course.courseId}}"><fa-icon  [icon]="iconEdit"></fa-icon></a>
                     <button >Enroll</button>
                     

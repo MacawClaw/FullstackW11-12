@@ -1,0 +1,32 @@
+.student-list {
+    margin: 5%;
+}
+
+table {
+    text-align: left;
+
+}
+
+table td, table th {
+    border: 1px solid blueviolet;
+    padding: 10px;
+    min-width: 100px;
+}
+button {
+    margin-right: 10px;
+}
+.icon-link {
+    margin-right: 10px;
+}
+
+.icon-delete {
+    color: red;
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.icon-edit {
+    color: blue;
+    font-size: 24px;
+    margin-right: 10px;
+}
