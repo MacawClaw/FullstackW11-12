@@ -41,6 +41,11 @@ public class AdminController {
         return courseService.getAllCourses();
     }
 
+    @GetMapping(path = "/courses/{courseId}")
+    public Course getCourse(@PathVariable String courseId){
+        return courseService.getCourseById(Integer.parseInt(courseId));
+    }
+
     @GetMapping(path = "/coursesbystudent/{studentId}")
     public List<Course> getCoursesByStudentId(@PathVariable int studentId) {
         return courseService.getCoursesByStudentId(studentId);

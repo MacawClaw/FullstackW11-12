@@ -10,17 +10,17 @@ public class CourseDTO {
 
     private int maxNumberOfStudents;
 
-    private int teacherId;
+    private String teacher;
 
     public CourseDTO() {
     }
 
-    public CourseDTO(int courseId, String name, String description, int maxNumberOfStudents, int teacherId) {
+    public CourseDTO(int courseId, String name, String description, int maxNumberOfStudents, String teacher) {
         this.courseId = courseId;
         this.name = name;
         this.description = description;
         this.maxNumberOfStudents = maxNumberOfStudents;
-        this.teacherId = teacherId;
+        this.teacher = teacher;
     }
 
     public int getCourseId() {
@@ -55,12 +55,12 @@ public class CourseDTO {
         this.maxNumberOfStudents = maxNumberOfStudents;
     }
 
-    public int getTeacherId() {
-        return teacherId;
+    public String getTeacher() {
+        return teacher;
     }
 
-    public void setTeacherId(int teacherId) {
-        this.teacherId = teacherId;
+    public void setTeacher(String teacher) {
+        this.teacher = teacher;
     }
 
     @Override
@@ -69,8 +69,8 @@ public class CourseDTO {
                 "courseId=" + courseId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", maxNumberOfStudents='" + maxNumberOfStudents + '\'' +
-                ", teacherId=" + teacherId +
+                ", maxNumberOfStudents=" + maxNumberOfStudents +
+                ", teacher='" + teacher + '\'' +
                 '}';
     }
 }

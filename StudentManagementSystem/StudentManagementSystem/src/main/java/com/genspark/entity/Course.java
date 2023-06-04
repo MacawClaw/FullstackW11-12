@@ -23,30 +23,17 @@ public class Course {
     @Column(name="max_students")
     private int maxNumberOfStudents;
 
-    @ManyToOne
-    @JoinColumn(name="teacher_id")
-    private User teacher;
+    private String teacher;
 
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<UserCourse> studentCourses = new ArrayList<>();
 
-    public Course(int courseId, String name, String description, int maxNumberOfStudents, User teacher) {
+    public Course(int courseId, String name, String description, int maxNumberOfStudents, String teacher) {
         this.courseId = courseId;
         this.name = name;
         this.description = description;
         this.maxNumberOfStudents = maxNumberOfStudents;
         this.teacher = teacher;
-    }
-
-    @Override
-    public String toString() {
-        return "Course{" +
-                "courseId=" + courseId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", maxNumberOfStudents=" + maxNumberOfStudents +
-                ", teacher=" + teacher +
-                '}';
     }
 }

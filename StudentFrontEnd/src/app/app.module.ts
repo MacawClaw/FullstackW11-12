@@ -8,6 +8,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { AddCourseComponent } from './add-course/add-course.component';
+import { CourseListComponent } from './course-list/course-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UpdateCourseComponent } from './update-course/update-course.component';
 
 
 @NgModule({
@@ -15,13 +19,17 @@ import { RegisterComponent } from './register/register.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AddCourseComponent,
+    CourseListComponent,
+    UpdateCourseComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
