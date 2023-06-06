@@ -4,16 +4,17 @@ public class LoginResponse {
 
     String message;
     Boolean status;
-
     String role;
+    int id;
 
     public LoginResponse() {
     }
 
-    public LoginResponse(String message, Boolean status, String role) {
+    public LoginResponse(String message, Boolean status, String role, int id) {
         this.message = message;
         this.status = status;
         this.role = role;
+        this.id = id;
     }
 
     public String getMessage() {
@@ -30,6 +31,22 @@ public class LoginResponse {
 
     public void setStatus(Boolean status) {
         this.status = status;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override

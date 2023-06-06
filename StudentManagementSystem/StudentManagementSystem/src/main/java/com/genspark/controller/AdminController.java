@@ -41,6 +41,21 @@ public class AdminController {
         return courseService.getAllCourses();
     }
 
+    @GetMapping(path = "/students")
+    public List<User> getAllStudents() {
+        return userService.getAllStudents();
+    }
+
+    @GetMapping(path = "/courses/{courseId}")
+    public Course getCourseById(@PathVariable String courseId){
+        return courseService.getCourseById(Integer.parseInt(courseId));
+    }
+
+    @GetMapping(path = "/students/{studentId}")
+    public User getStudentById(@PathVariable String studentId){
+        return userService.getStudentById(Integer.parseInt(studentId));
+    }
+
     @GetMapping(path = "/coursesbystudent/{studentId}")
     public List<Course> getCoursesByStudentId(@PathVariable int studentId) {
         return courseService.getCoursesByStudentId(studentId);
@@ -56,9 +71,21 @@ public class AdminController {
         return courseService.updateCourse(courseDTO);
     }
 
+    @PutMapping(path="/saveuser")
+    public User updateStudent(@RequestBody UserDTO userDTO) {
+        return userService.updateStudent(userDTO);
+    }
+
+    //putmappingvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
+
     @DeleteMapping("/deletecourse/{courseId}")
     public String deleteCourse(@PathVariable int courseId) {
         return courseService.deleteCourse(courseId);
+    }
+
+    @DeleteMapping("/deletestudent/{studentId}")
+    public String deleteStudent(@PathVariable int studentId) {
+        return userService.deleteStudent(studentId);
     }
 
     @DeleteMapping("/deletecoursestudent/{courseId}/{studentId}")

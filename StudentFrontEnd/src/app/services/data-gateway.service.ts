@@ -22,7 +22,7 @@ export class DataGatewayService {
   getLoginStatus(loginData: LoginInfo): Observable<any> {
     console.log(loginData);
 
-    return this.http.post(`${this.apiUrl}/api/v1/user/login`, loginData);
+    return this.http.post(`${this.apiUrl}/api/v1/login/log`, loginData);
   }
 
   getAccountRegistered(accountRegistration: AccountRegistration): Observable<any> {

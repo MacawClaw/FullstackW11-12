@@ -22,4 +22,6 @@ public interface CourseService {
     String deleteUser(int userId);
 
     String addCourseAndStudent(int courseId, int studentId);
+
+    Course getCourseById(int courseId);
 }

@@ -9,23 +9,23 @@ import { DataGatewayService } from '../services/data-gateway.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  firstname!: string;
-  lastname!: string;
+  userFirstName!: string;
+  userLastName!: string;
   email!: string; 
   password!: string;
-  role: string="student";
+  role: string="STUDENT";
 
   constructor(private http: HttpClient, private dataService: DataGatewayService){}
 
   save() {
-    if (!this.firstname || !this.lastname || !this.email || !this.password) {
+    if (!this.userFirstName || !this.userLastName || !this.email || !this.password || !this.role) {
       alert('Please enter required information.')
       return;
     }
 
     const accountRegistration: AccountRegistration = {
-      firstname: this.firstname,
-      lastname: this.lastname,
+      userFirstName: this.userFirstName,
+      userLastName: this.userLastName,
       email: this.email,
       password: this.password,
       role: this.role
@@ -37,7 +37,7 @@ export class RegisterComponent {
       this.dataService.getAccountRegistered(accountRegistration).subscribe((accountRegistration) => resultData);
     
     console.log(resultData);
-    alert("student registered successfully");
+    alert("Registered successfully");
   }
 
 }

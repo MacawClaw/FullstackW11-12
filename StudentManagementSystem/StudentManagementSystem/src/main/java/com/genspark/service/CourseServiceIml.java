@@ -8,8 +8,11 @@ import com.genspark.repository.UserRepo;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -27,7 +30,7 @@ public class CourseServiceIml implements CourseService {
                 courseDTO.getName(),
                 courseDTO.getDescription(),
                 courseDTO.getMaxNumberOfStudents(),
-                new User(courseDTO.getTeacherId())
+               courseDTO.getTeacher()
         );
 
         courseRepo.save(course);
@@ -39,6 +42,8 @@ public class CourseServiceIml implements CourseService {
         return courseRepo.findAll();
     }
 
+
+
     @Override
     public Course updateCourse(CourseDTO courseDTO) {
         Course course = new Course(
@@ -46,7 +51,7 @@ public class CourseServiceIml implements CourseService {
                 courseDTO.getName(),
                 courseDTO.getDescription(),
                 courseDTO.getMaxNumberOfStudents(),
-                new User(courseDTO.getTeacherId())
+                courseDTO.getTeacher()
         );
 
         return courseRepo.save(course);
@@ -84,5 +89,17 @@ public class CourseServiceIml implements CourseService {
     public String addCourseAndStudent(int courseId, int studentId) {
         courseRepo.saveCourseAndStudent(courseId, studentId);
         return "saved";
+    }
+
+    @Override
+    public Course getCourseById(int courseId) {
+        Optional<Course> c = courseRepo.findById(courseId);
+        Course course = null;
+        if (c.isPresent()){
+            course = c.get();
+        } else {
+            throw new RuntimeException("Course ID " + courseId + " not found");
+        }
+        return course;
     }
 }

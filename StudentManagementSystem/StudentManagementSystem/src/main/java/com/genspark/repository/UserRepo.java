@@ -18,4 +18,9 @@ public interface UserRepo extends JpaRepository<User, Integer> {
 
     @Query(value = "SELECT u.* FROM users u INNER JOIN user_course uc ON u.user_id = uc.user_id WHERE uc.course_id = :courseId", nativeQuery = true)
     List<User> findByCourseId(@Param("courseId")int courseId);
+
+    @Query(value = "SELECT u.* FROM users u WHERE u.role = 'STUDENT'", nativeQuery = true)
+    List<User> findAllStudents();
+
+
 }

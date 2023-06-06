@@ -36,10 +36,6 @@ public class User {
     @Column(name="role", length = 255)
     private String role;
 
-    @OneToMany(mappedBy = "teacher", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
-    private List<Course> courses = new ArrayList<>();
-
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnore
     private List<UserCourse> studentCourses = new ArrayList<>();

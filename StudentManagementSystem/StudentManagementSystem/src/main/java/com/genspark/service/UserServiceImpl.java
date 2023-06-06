@@ -1,7 +1,9 @@
 package com.genspark.service;
 
+import com.genspark.Dto.CourseDTO;
 import com.genspark.Dto.LoginDTO;
 import com.genspark.Dto.UserDTO;
+import com.genspark.entity.Course;
 import com.genspark.entity.User;
 import com.genspark.repository.UserRepo;
 import com.genspark.response.LoginResponse;
@@ -9,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -46,15 +49,50 @@ public class UserServiceImpl implements UserService{
             if (isPwdRight) {
                 Optional<User> user = userRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if (user.isPresent()) {
-                    return new LoginResponse("Login Success", true, user.get().getRole());
+                    return new LoginResponse("Login Success", true, user.get().getRole(), user.get().getUserId());
                 } else {
-                    return new LoginResponse("Login Failed", false, "");
+                    return new LoginResponse("Login Failed", false, "", 0);
                 }
             } else {
-                return new LoginResponse("password Not Match", false, "");
+                return new LoginResponse("password Not Match", false, "", 0);
             }
         } else {
-            return new LoginResponse("Email does not exist", false, "");
+            return new LoginResponse("Email does not exist", false, "", 0);
         }
     }
+
+    @Override
+    public List<User> getAllStudents() {
+        return userRepo.findAllStudents();
+    }
+
+    @Override
+    public User getStudentById(int studentId) {
+        Optional<User> u = userRepo.findById(studentId);
+        User user = null;
+        if (u.isPresent()){
+            user = u.get();
+        } else {
+            throw new RuntimeException("User ID " + studentId + " not found");
+        }
+        return user;
+    }
+
+
+    @Override
+    public User updateStudent(UserDTO userDTO) {
+        User student = getStudentById(userDTO.getUserId());
+        student.setUserFirstName(userDTO.getUserFirstName());
+        student.setUserLastName(userDTO.getUserLastName());
+        student.setEmail(userDTO.getEmail());
+        return userRepo.save(student);
+
+    }
+
+    @Override
+    public String deleteStudent(int studentId) {
+        userRepo.deleteById(studentId);
+        return "Student deleted";
+    }
+
 }
