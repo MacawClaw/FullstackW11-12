@@ -49,15 +49,15 @@ public class UserServiceImpl implements UserService{
             if (isPwdRight) {
                 Optional<User> user = userRepo.findOneByEmailAndPassword(loginDTO.getEmail(), encodedPassword);
                 if (user.isPresent()) {
-                    return new LoginResponse("Login Success", true, user.get().getRole(), user.get().getUserId());
+                    return new LoginResponse("Login Success", true, user.get().getRole(), user.get().getUserId(), user.get().getUserFirstName()+ " " + user.get().getUserLastName());
                 } else {
-                    return new LoginResponse("Login Failed", false, "", 0);
+                    return new LoginResponse("Login Failed", false, "", 0, "");
                 }
             } else {
-                return new LoginResponse("password Not Match", false, "", 0);
+                return new LoginResponse("password Not Match", false, "", 0, "");
             }
         } else {
-            return new LoginResponse("Email does not exist", false, "", 0);
+            return new LoginResponse("Email does not exist", false, "", 0, "");
         }
     }
 
@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User getStudentById(int studentId) {
+    public User getUserById(int studentId) {
         Optional<User> u = userRepo.findById(studentId);
         User user = null;
         if (u.isPresent()){
@@ -80,13 +80,18 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public User updateStudent(UserDTO userDTO) {
-        User student = getStudentById(userDTO.getUserId());
+    public User updateUser(UserDTO userDTO) {
+        User student = getUserById(userDTO.getUserId());
         student.setUserFirstName(userDTO.getUserFirstName());
         student.setUserLastName(userDTO.getUserLastName());
         student.setEmail(userDTO.getEmail());
         return userRepo.save(student);
 
+    }
+
+    @Override
+    public List<User> getAllTeachers() {
+        return userRepo.findAllTeachers();
     }
 
     @Override

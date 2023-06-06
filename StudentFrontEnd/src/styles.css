@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     font-family: sans-serif;
+    background-color: rgb(226, 226, 222);
 }
 
 .container {
@@ -22,15 +23,15 @@ body {
 .form-input {
     height: 35px;
     margin-bottom: 20px;
-    border: 1px solid blueviolet;
+    border: 1px solid rgb(142, 167, 173);
     padding-left: 15px;
-    color: blueviolet;
+    color: rgb(142, 167, 173);
 }
 
 .form-button {
     height: 35px;
-    border: 1px solid blueviolet;
-    color: blueviolet;
+    border: 1px solid rgb(142, 167, 173);
+    color: rgb(142, 167, 173);
     cursor: pointer;
 }
 

@@ -15,9 +15,11 @@ public interface UserService {
 
     List<User> getAllStudents();
 
-    User getStudentById(int studentId);
+    User getUserById(int studentId);
 
     String deleteStudent(int studentId);
 
-    User updateStudent(UserDTO userDTO);
+    User updateUser(UserDTO userDTO);
+
+    List<User> getAllTeachers();
 }

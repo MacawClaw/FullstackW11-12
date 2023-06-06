@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CourseService } from '../services/course.service';
 import { Course } from '../services/Data-Types';
 
@@ -12,7 +12,8 @@ export class UpdateCourseComponent implements OnInit{
   courseData: undefined | Course;
   courseMessage: undefined | string;
 
-  constructor(private route: ActivatedRoute, private courseService:CourseService){}
+  constructor(private route: ActivatedRoute, private courseService:CourseService,
+    private router:Router){}
 
   ngOnInit(): void {
     let courseId = this.route.snapshot.paramMap.get('id');
@@ -36,6 +37,7 @@ export class UpdateCourseComponent implements OnInit{
 
     setTimeout(() => {
       this.courseMessage=undefined;
+      this.router.navigateByUrl('/admin-courses');
     }, 2000);
   }
 

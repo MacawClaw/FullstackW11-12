@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Student } from '../services/Data-Types';
 import { StudentService } from '../services/student.service';
+import { DataGatewayService } from '../services/data-gateway.service';
 
 @Component({
   selector: 'app-student-list',
@@ -14,7 +15,7 @@ export class StudentListComponent implements OnInit{
   iconDelete=faTrash;
   iconEdit=faEdit;
 
-  constructor(private studentService: StudentService){}
+  constructor(private studentService: StudentService, private loginService: DataGatewayService){}
 
   ngOnInit(): void {
     this.list();
@@ -30,17 +31,21 @@ export class StudentListComponent implements OnInit{
   }
 
   deleteStudent(studentId:number){
-    this.studentService.deleteStudent(studentId).subscribe((result) => {
-      if(result){
-        this.studentMessage="Student Deleted";
-        this.list();
-      }
-      console.warn(result);
-      
-    });
-    setTimeout(() => {
-      this.studentMessage=undefined;
-    }, 2000);
+    if (this.loginService.userRole == 'ADMIN') {
+      this.studentService.deleteStudent(studentId).subscribe((result) => {
+        if(result){
+          this.studentMessage="Student Deleted";
+          this.list();
+        }
+        console.warn(result);
+        
+      });
+      setTimeout(() => {
+        this.studentMessage=undefined;
+      }, 2000);
+    } else {
+      alert("You don't have permission to access this page")
+    }
   }
 
 }

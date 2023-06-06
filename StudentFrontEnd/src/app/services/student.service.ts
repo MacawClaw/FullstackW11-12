@@ -19,7 +19,7 @@ export class StudentService {
   }
 
   getStudent(id:string) {
-    return this.http.get<Student>(`${this.apiUrl}/api/v1/admin/students/${id}`)
+    return this.http.get<Student>(`${this.apiUrl}/api/v1/admin/users/${id}`)
   }
 
   updateStudent(student:Student) {
