@@ -13,7 +13,7 @@ export class RegisterComponent {
   userLastName!: string;
   email!: string; 
   password!: string;
-  role: string="STUDENT";
+  role!: string;
   registrationMessage:string|undefined;
 
   constructor(private router: Router,private dataService: DataGatewayService){}
