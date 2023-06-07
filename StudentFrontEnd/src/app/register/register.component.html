@@ -47,7 +47,7 @@
         </label>
     </div>        
    
-    <button [disabled]="!(regForm.valid && regForm.dirty)" type="submit" class="btn btn-primary" (click)="save()">Register</button>
+    <button [disabled]="!(fname.valid && lname.valid && eName.valid && pword.valid)" type="submit" class="btn btn-primary" (click)="save()">Register</button>
     </form>
     </div>
 </div>

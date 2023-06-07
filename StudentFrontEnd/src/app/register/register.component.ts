@@ -13,16 +13,13 @@ export class RegisterComponent {
   userLastName!: string;
   email!: string; 
   password!: string;
-  role!: string;
+  role: string = "STUDENT";
   registrationMessage:string|undefined;
 
   constructor(private router: Router,private dataService: DataGatewayService){}
+  
 
   save() {
-    if (!this.userFirstName || !this.userLastName || !this.email || !this.password || !this.role) {
-      alert('Please enter required information.')
-      return;
-    }
 
     const accountRegistration: AccountRegistration = {
       userFirstName: this.userFirstName,
