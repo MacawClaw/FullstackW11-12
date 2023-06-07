@@ -14,6 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UpdateCourseComponent } from './update-course/update-course.component';
 import { UpdateStudentComponent } from './update-student/update-student.component';
 import { StudentListComponent } from './student-list/student-list.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DataGatewayService } from './services/data-gateway.service';
 
 
 @NgModule({
@@ -26,7 +28,8 @@ import { StudentListComponent } from './student-list/student-list.component';
     CourseListComponent,
     UpdateCourseComponent,
     UpdateStudentComponent,
-    StudentListComponent
+    StudentListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +38,7 @@ import { StudentListComponent } from './student-list/student-list.component';
     HttpClientModule,
     FontAwesomeModule
   ],
-  providers: [],
+  providers: [DataGatewayService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

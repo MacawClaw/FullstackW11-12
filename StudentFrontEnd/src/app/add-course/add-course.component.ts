@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CourseService } from '../services/course.service';
 import { Course } from '../services/Data-Types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-course',
@@ -9,7 +10,7 @@ import { Course } from '../services/Data-Types';
 })
 export class AddCourseComponent {
   addCourseMessage:string|undefined;
-  constructor(private courseService: CourseService){
+  constructor(private courseService: CourseService, private router: Router){
   }
 
   submit(data: Course){
@@ -23,6 +24,7 @@ export class AddCourseComponent {
 
     setTimeout(() => {
       this.addCourseMessage=undefined;
+      this.router.navigateByUrl('/admin-courses');
     }, 2000);
   }
 

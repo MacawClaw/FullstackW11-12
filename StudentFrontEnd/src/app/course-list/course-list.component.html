@@ -9,7 +9,7 @@
                 <th>Description</th>                
                 <th>maxNumberOfStudents</th>
                 <th>Teacher Name</th>
-                <th>Action</th>
+                <th *ngIf="userId">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -19,11 +19,11 @@
                 <td>{{course.description}}</td>
                 <td>{{course.maxNumberOfStudents}}</td>
                 <td>{{course.teacher}}</td>
-                <td>
-                    <fa-icon (click)="deleteCourse(course.courseId)" [icon]="iconDelete"></fa-icon>
+                <td *ngIf="userId">
+                    <fa-icon *ngIf="isAdmin()" (click)="deleteCourse(course.courseId)" [icon]="iconDelete" class="icon-delete"></fa-icon>
                     
-                    <a class="icon-link" routerLink="/admin-update-course/{{course.courseId}}"><fa-icon  [icon]="iconEdit"></fa-icon></a>
-                    <button >Enroll</button>
+                    <a *ngIf="isAdmin()" class="icon-edit" routerLink="/admin-update-course/{{course.courseId}}"><fa-icon  [icon]="iconEdit"></fa-icon></a>
+                    <button *ngIf="!isAdmin()" (click)="enrollCourse(course.courseId)" >Enroll</button>
                     
                 </td>
             </tr>

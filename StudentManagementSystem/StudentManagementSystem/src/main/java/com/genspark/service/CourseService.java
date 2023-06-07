@@ -3,6 +3,7 @@ package com.genspark.service;
 import com.genspark.Dto.CourseDTO;
 import com.genspark.entity.Course;
 import com.genspark.entity.User;
+import com.genspark.response.EnrollmentResponse;
 
 import java.util.List;
 
@@ -24,4 +25,6 @@ public interface CourseService {
     String addCourseAndStudent(int courseId, int studentId);
 
     Course getCourseById(int courseId);
+
+    EnrollmentResponse studentEnrollment(int courseId, int studentId);
 }

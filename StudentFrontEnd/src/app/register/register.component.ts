@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { AccountRegistration } from '../services/AccountRegistration';
 import { DataGatewayService } from '../services/data-gateway.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +14,9 @@ export class RegisterComponent {
   email!: string; 
   password!: string;
   role: string="STUDENT";
+  registrationMessage:string|undefined;
 
-  constructor(private http: HttpClient, private dataService: DataGatewayService){}
+  constructor(private router: Router,private dataService: DataGatewayService){}
 
   save() {
     if (!this.userFirstName || !this.userLastName || !this.email || !this.password || !this.role) {
@@ -36,8 +37,14 @@ export class RegisterComponent {
     let resultData: any =
       this.dataService.getAccountRegistered(accountRegistration).subscribe((accountRegistration) => resultData);
     
-    console.log(resultData);
-    alert("Registered successfully");
+    this.registrationMessage = "Registered Successfully";
+   
+    setTimeout(() => {
+      this.registrationMessage=undefined;
+      this.router.navigateByUrl('/login');
+    }, 2000);
+    //console.log(resultData);
+    
   }
 
 }

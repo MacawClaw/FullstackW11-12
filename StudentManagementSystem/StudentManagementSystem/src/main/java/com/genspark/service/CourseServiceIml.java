@@ -5,11 +5,10 @@ import com.genspark.entity.Course;
 import com.genspark.entity.User;
 import com.genspark.repository.CourseRepo;
 import com.genspark.repository.UserRepo;
+import com.genspark.response.EnrollmentResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 import java.util.Optional;
@@ -102,4 +101,11 @@ public class CourseServiceIml implements CourseService {
         }
         return course;
     }
+
+    @Override
+    public EnrollmentResponse studentEnrollment(int courseId, int studentId) {
+        if (courseRepo.isStudentAlreadyEnrolled(courseId, studentId) > 0) return new EnrollmentResponse("Enrolled", true);
+        return new EnrollmentResponse("Not enrolled", false);
+    }
+
 }

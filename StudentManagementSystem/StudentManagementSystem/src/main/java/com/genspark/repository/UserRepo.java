@@ -22,5 +22,6 @@ public interface UserRepo extends JpaRepository<User, Integer> {
     @Query(value = "SELECT u.* FROM users u WHERE u.role = 'STUDENT'", nativeQuery = true)
     List<User> findAllStudents();
 
-
+    @Query(value = "SELECT u.* FROM users u WHERE u.role = 'TEACHER'", nativeQuery = true)
+    List<User> findAllTeachers();
 }

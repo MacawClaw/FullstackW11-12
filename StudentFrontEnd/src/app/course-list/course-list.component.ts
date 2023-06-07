@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Course } from '../services/Data-Types';
 import { CourseService } from '../services/course.service';
 import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { DataGatewayService } from '../services/data-gateway.service';
 
 @Component({
   selector: 'app-course-list',
@@ -13,8 +14,11 @@ export class CourseListComponent implements OnInit{
   courseMessage:undefined|string;
   iconDelete=faTrash;
   iconEdit=faEdit;
+  userId: undefined|number;
 
-  constructor(private courseService: CourseService){}
+  constructor(private courseService: CourseService, private loginService:DataGatewayService){
+    this.userId = loginService.userId;    
+  }
 
   ngOnInit(): void {
     this.list();
@@ -42,5 +46,25 @@ export class CourseListComponent implements OnInit{
       }
     })
   }
+
+  enrollCourse(courseId:number){   
+    
+      this.userId && this.courseService.isStudentAlreadyEnrolled(courseId, this.userId).subscribe((result:any) => {
+        if (result.message !== 'Enrolled') {
+          this.userId && this.courseService.enrollCourse(courseId,this.userId);
+          alert("You has successfully enrolled")
+        } else {
+          alert ("You already enrolled in this course!")
+        }
+      });
+    
+    
+  }
+
+  isAdmin():boolean {
+    return this.loginService.userRole=='ADMIN';
+  }
+
+
 
 }

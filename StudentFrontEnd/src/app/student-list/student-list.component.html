@@ -1,6 +1,6 @@
 <div class="student-list">
     <h1>Student List</h1>
-    
+    <p class="message-p">{{studentMessage}}</p>
     <table>
         <thead>
             <tr>
@@ -22,7 +22,7 @@
                     <fa-icon (click)="deleteStudent(student.userId)" [icon]="iconDelete" class="icon-delete"></fa-icon>
                     <a routerLink="/admin-update-student/{{student.userId}}"><fa-icon  [icon]="iconEdit" class="icon-edit"></fa-icon></a>
                    
-                    
+                     
                     
                 </td>
             </tr>

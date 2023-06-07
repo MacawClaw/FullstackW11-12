@@ -22,4 +22,7 @@ public interface CourseRepo extends JpaRepository<Course, Integer> {
     @Query(value = "insert into user_course(course_id, user_id) values(?1,?2)", nativeQuery = true)
     @Modifying
     void saveCourseAndStudent(int courseId, int studentId);
+
+    @Query(value = "SELECT COUNT(*) AS count FROM user_course WHERE user_id = ?2 AND course_id = ?1", nativeQuery = true)
+    int isStudentAlreadyEnrolled(int courseId, int studentId);
 }

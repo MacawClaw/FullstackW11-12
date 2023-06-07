@@ -1,12 +1,16 @@
 package com.genspark.controller;
 
 import com.genspark.Dto.CourseDTO;
+import com.genspark.Dto.LoginDTO;
 import com.genspark.Dto.UserDTO;
 import com.genspark.entity.Course;
 import com.genspark.entity.User;
+import com.genspark.response.EnrollmentResponse;
+import com.genspark.response.LoginResponse;
 import com.genspark.service.CourseService;
 import com.genspark.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,14 +50,19 @@ public class AdminController {
         return userService.getAllStudents();
     }
 
+    @GetMapping(path = "/teachers")
+    public List<User> getAllTeachers() {
+        return userService.getAllTeachers();
+    }
+
     @GetMapping(path = "/courses/{courseId}")
     public Course getCourseById(@PathVariable String courseId){
         return courseService.getCourseById(Integer.parseInt(courseId));
     }
 
-    @GetMapping(path = "/students/{studentId}")
-    public User getStudentById(@PathVariable String studentId){
-        return userService.getStudentById(Integer.parseInt(studentId));
+    @GetMapping(path = "/users/{userId}")
+    public User getUserById(@PathVariable String userId){
+        return userService.getUserById(Integer.parseInt(userId));
     }
 
     @GetMapping(path = "/coursesbystudent/{studentId}")
@@ -72,11 +81,9 @@ public class AdminController {
     }
 
     @PutMapping(path="/saveuser")
-    public User updateStudent(@RequestBody UserDTO userDTO) {
-        return userService.updateStudent(userDTO);
+    public User updateUser(@RequestBody UserDTO userDTO) {
+        return userService.updateUser(userDTO);
     }
-
-    //putmappingvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
 
     @DeleteMapping("/deletecourse/{courseId}")
     public String deleteCourse(@PathVariable int courseId) {
@@ -94,14 +101,22 @@ public class AdminController {
     }
 
     @PostMapping(path="/savecoursestudent/{courseId}/{studentId}")
-    public String saveCourse(@PathVariable("courseId") int courseId, @PathVariable("studentId") int studentId) {
-
-
+    public String saveCourseStudent(@PathVariable("courseId") int courseId, @PathVariable("studentId") int studentId) {
         return courseService.addCourseAndStudent(courseId, studentId);
     }
 
     @DeleteMapping("/deleteuser/{userId}")
     public String deleteUser(@PathVariable int userId) {
         return courseService.deleteUser(userId);
+    }
+
+    @GetMapping(path="/isstudentenrolled/{courseId}/{studentId}")
+   // public String studentEnrollment(@PathVariable("courseId") int courseId, @PathVariable("studentId") int studentId){
+   //     return courseService.studentEnrollment(courseId, studentId);
+   // }
+
+    public ResponseEntity<?> studentEnrollment(@PathVariable("courseId") int courseId, @PathVariable("studentId") int studentId) {
+        EnrollmentResponse response = courseService.studentEnrollment(courseId, studentId);
+        return ResponseEntity.ok(response);
     }
 }

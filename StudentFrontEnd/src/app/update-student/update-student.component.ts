@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Student } from '../services/Data-Types';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '../services/student.service';
 
 @Component({
@@ -12,7 +12,8 @@ export class UpdateStudentComponent implements OnInit{
   studentData: undefined | Student;
   studentMessage: undefined | string;
 
-  constructor(private route: ActivatedRoute, private studentService:StudentService){}
+  constructor(private route: ActivatedRoute, private studentService:StudentService,
+    private router: Router){}
 
   ngOnInit(): void {
     let studentId = this.route.snapshot.paramMap.get('id');
@@ -37,6 +38,7 @@ export class UpdateStudentComponent implements OnInit{
 
     setTimeout(() => {
       this.studentMessage=undefined;
+      this.router.navigateByUrl('/admin-students');
     }, 2000);
   }
 }

@@ -6,15 +6,17 @@ public class LoginResponse {
     Boolean status;
     String role;
     int id;
+    String fullName;
 
     public LoginResponse() {
     }
 
-    public LoginResponse(String message, Boolean status, String role, int id) {
+    public LoginResponse(String message, Boolean status, String role, int id, String fullName) {
         this.message = message;
         this.status = status;
         this.role = role;
         this.id = id;
+        this.fullName = fullName;
     }
 
     public String getMessage() {
@@ -47,6 +49,14 @@ public class LoginResponse {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     @Override

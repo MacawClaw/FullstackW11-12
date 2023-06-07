@@ -20,21 +20,20 @@ export class LoginComponent {
       alert('Missing email or password.')
       return;
     }
-
-    const loginData: LoginInfo = {
-      email: this.email,
-      password: this.password
-    };
-
-    console.log(loginData);
-    let bodyData = {
+    
+    let bodyData: LoginInfo = {
       email: this.email,
       password: this.password,
     };
-    this.http.post("http://localhost:8080/api/v1/login/log", bodyData).subscribe((resultData: any) => {
-    console.log(resultData);
-    console.log(resultData.id);
-    if (resultData.message == "Email does not exist") {
+    
+    this.dataService.getLoginStatus(bodyData);
+  }
+}
+
+//this.http.post("http://localhost:8080/api/v1/login/log", bodyData).subscribe((resultData: any) => {
+    //console.log(resultData);
+    //console.log(resultData.id);
+    /*if (resultData.message == "Email does not exist") {
       alert("Email does not exist");
     }   
     else if (resultData.message == "Login Success") {
@@ -43,9 +42,7 @@ export class LoginComponent {
     else {
       alert("Incorrect email or password");
     }  
-  });
-}
-}
+  });*/
 
   /*
   login(){
