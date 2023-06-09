@@ -1,3 +1,12 @@
+/*.text {
+    font-family: Arial, sans-serif;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}*/
+
 .welcome {
     display: flex;
     flex-direction: row;
@@ -5,7 +14,6 @@
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
-    
     justify-content: left;
     align-items: center;
     height: 93vh;
@@ -28,7 +36,6 @@
     color: #f0f0f0;
     text-align: center;
     max-width: 60%;
-    
     margin: 50px;
     padding: 50px;
     border-radius: 120px;
