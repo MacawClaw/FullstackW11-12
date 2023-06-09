@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path:'admin-add-course', component: AddCourseComponent},
-  {path: 'admin-courses', component: CourseListComponent},
+  {path: 'courses', component: CourseListComponent},
   {path: 'admin-update-course/:id', component: UpdateCourseComponent},
   {path: 'home', component: HomeComponent},
   {path: 'admin-students', component: StudentListComponent},

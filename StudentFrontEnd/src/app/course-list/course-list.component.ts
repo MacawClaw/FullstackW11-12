@@ -52,9 +52,17 @@ export class CourseListComponent implements OnInit{
       this.userId && this.courseService.isStudentAlreadyEnrolled(courseId, this.userId).subscribe((result:any) => {
         if (result.message !== 'Enrolled') {
           this.userId && this.courseService.enrollCourse(courseId,this.userId);
-          alert("You has successfully enrolled")
+          //alert("You has successfully enrolled")
+          this.courseMessage = "You has successfully enrolled!";
+        setTimeout(() => {
+          this.courseMessage = undefined;
+        }, 2000);
         } else {
-          alert ("You already enrolled in this course!")
+          //alert ("You already enrolled in this course!")
+          this.courseMessage = "You are already enrolled in this course!";
+        setTimeout(() => {
+          this.courseMessage = undefined;
+        }, 2000);
         }
       });
     
