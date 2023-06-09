@@ -8,8 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CourseService {
-  private apiUrl = 'http://localhost:8080'
-  
+  //private apiUrl = 'http://localhost:8080'
+  private apiUrl = 'http://courseenrollment.eba-7psxtkqh.us-east-1.elasticbeanstalk.com'
 
   constructor(private http: HttpClient) { }
 

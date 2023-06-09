@@ -8,7 +8,8 @@ h1, p {
 
 table {
     text-align: left;
-margin: auto;
+    margin: auto;
+    background-color: beige;
 }
 
 table td, table th {
