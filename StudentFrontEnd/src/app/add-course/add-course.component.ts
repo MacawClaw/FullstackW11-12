@@ -24,7 +24,7 @@ export class AddCourseComponent {
 
     setTimeout(() => {
       this.addCourseMessage=undefined;
-      this.router.navigateByUrl('/admin-courses');
+      this.router.navigateByUrl('/courses');
     }, 2000);
   }
 

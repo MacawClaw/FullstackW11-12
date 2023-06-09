@@ -37,7 +37,7 @@ export class UpdateCourseComponent implements OnInit{
 
     setTimeout(() => {
       this.courseMessage=undefined;
-      this.router.navigateByUrl('/admin-courses');
+      this.router.navigateByUrl('/courses');
     }, 2000);
   }
 
