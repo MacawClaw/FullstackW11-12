@@ -12,14 +12,21 @@ import { DataGatewayService } from '../services/data-gateway.service';
 export class LoginComponent {
   email!: string; 
   password!: string;
+  errorMessage:undefined|string;
 
   constructor(private http: HttpClient, private router: Router, private dataService: DataGatewayService){}
 
   onSubmit() {
     if (!this.email || !this.password) {
-      alert('Missing email or password.')
+      //alert('Missing email or password.')
+      this.errorMessage="Missing email or password.";
+      setTimeout(() => {
+        this.errorMessage=undefined;
+      }, 2000);
       return;
     }
+
+    
     
     let bodyData: LoginInfo = {
       email: this.email,

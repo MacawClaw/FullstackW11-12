@@ -6,7 +6,8 @@ import { Student } from './Data-Types';
   providedIn: 'root'
 })
 export class StudentService {
-  private apiUrl = 'http://localhost:8080'
+  //private apiUrl = 'http://localhost:8080'
+  private apiUrl = 'http://courseenrollment.eba-7psxtkqh.us-east-1.elasticbeanstalk.com'
 
   constructor(private http: HttpClient) { } 
 

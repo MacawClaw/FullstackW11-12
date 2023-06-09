@@ -15,7 +15,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class DataGatewayService {
-  private apiUrl = 'http://localhost:8080'
+  //private apiUrl = 'http://localhost:8080'
+  private apiUrl = 'http://courseenrollment.eba-7psxtkqh.us-east-1.elasticbeanstalk.com'
   userId: undefined | number;
   userFullName: undefined | string;
   userRole: undefined | string;
